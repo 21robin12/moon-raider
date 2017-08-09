@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- STYLES -->
+    <style>
+        .wrapper {
+            margin-left: auto;
+            margin-right: auto;
+            width: 600px;
+        }
+
+        .fps {
+            text-align: center;
+        }
+
+        .canvas-main {
+            border: 1px solid black;
+            background: #EEEEEE;
+        }
+    </style>
+
+    <!-- SCRIPTS -->
+    <script src="dist/global.js"></script>
+    <script>
+    function init() {
+        var canvas = document.getElementById('canvas');
+        var canvasContext = canvas.getContext('2d');
+        var program = new Program();
+        program.run(canvasContext);
+    }
+    </script>
+</head>
+<body onload="init()">
+    <div class="wrapper">
+        <canvas id="canvas" class="canvas-main" width="600" height="600"></canvas>
+    </div>
+</body>
+</html>
