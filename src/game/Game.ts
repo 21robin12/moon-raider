@@ -44,10 +44,12 @@ export class Game {
         this.spaceShip.move(dt);
         this.spaceShip.applyDrag(dt); 
 
+        var self = this;
+
         var actions = [
-            { key: 37, action: function () { this.spaceShip.rotateAnticlockwise(dt); } },
-            { key: 38, action: function () { this.spaceShip.accelerate(dt); } },
-            { key: 39, action: function () { this.spaceShip.rotateClockwise(dt); } }
+            { key: 37, action: function () { self.spaceShip.rotateAnticlockwise(dt); } },
+            { key: 38, action: function () { self.spaceShip.accelerate(dt); } },
+            { key: 39, action: function () { self.spaceShip.rotateClockwise(dt); } }
         ];
 
         for (var j = 0; j < actions.length; j++) {

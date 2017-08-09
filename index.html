@@ -20,18 +20,10 @@
     </style>
 
     <!-- SCRIPTS -->
-    <script src="lib/require.js"></script>
+    <script data-main="main" type="text/javascript" src="lib/require.js"></script>
     <script src="dist/global.js"></script>
-    <script>
-    function init() {
-        var canvas = document.getElementById('canvas');
-        var canvasContext = canvas.getContext('2d');
-        var program = new Program();
-        program.run(canvasContext);
-    }
-    </script>
 </head>
-<body onload="init()">
+<body>
     <div class="wrapper">
         <canvas id="canvas" class="canvas-main" width="600" height="600"></canvas>
     </div>

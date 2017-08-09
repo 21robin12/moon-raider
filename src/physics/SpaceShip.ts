@@ -17,10 +17,10 @@ export class SpaceShip extends VelocityBody {
     }
 
     rotateClockwise = function (dt: number) {
-        this.theta += dt * Constants.spaceShipRotationVelocity;
+        this.angle += dt * Constants.spaceShipRotationVelocity;
     } 
 
     rotateAnticlockwise = function (dt: number) {
-        this.theta -= dt * Constants.spaceShipRotationVelocity;
+        this.angle -= dt * Constants.spaceShipRotationVelocity;
     }
 } 
