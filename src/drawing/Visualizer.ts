@@ -13,7 +13,7 @@ export class Visualizer {
     }
 
     setCamera(spaceShip: SpaceShip) {
-        var offsetMultiplier = 300;
+        var offsetMultiplier = 700;
         this.camera = new Vector2D(spaceShip.position.x - (spaceShip.velocity.x * offsetMultiplier) - this.canvas.width / 2, spaceShip.position.y - (spaceShip.velocity.y * offsetMultiplier) - this.canvas.height / 2);
     }
 
