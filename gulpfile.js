@@ -4,6 +4,7 @@ var ts = require('gulp-typescript');
 gulp.task('scripts', function() {
     return gulp.src('src/**/*.ts')
         .pipe(ts({
+            module: "amd",
             noImplicitAny: true,
             out: 'global.js'
         }))
