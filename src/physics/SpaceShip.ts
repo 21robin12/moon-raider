@@ -18,9 +18,15 @@ export class SpaceShip extends VelocityBody {
 
     rotateClockwise = function (dt: number) {
         this.angle += dt * Constants.spaceShipRotationVelocity;
+        if (this.angle >= Math.PI * 2) {
+            this.angle -= Math.PI * 2;
+        }
     } 
 
     rotateAnticlockwise = function (dt: number) {
         this.angle -= dt * Constants.spaceShipRotationVelocity;
+        if (this.angle <= 0) {
+            this.angle += Math.PI * 2;
+        }
     }
 } 
