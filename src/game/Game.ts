@@ -79,7 +79,7 @@ export class Game {
 
     // TODO for development - remove
     private drawGrid() {
-        var latticeSpacing = 100;
+        var latticeSpacing = 60;
 
         var startIntervalX = Math.ceil((this.spaceShip.position.x - this.canvas.width) / latticeSpacing) * latticeSpacing;
         var startIntervalY = Math.ceil((this.spaceShip.position.y - this.canvas.height) / latticeSpacing) * latticeSpacing;
