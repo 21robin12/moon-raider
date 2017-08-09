@@ -45,13 +45,11 @@ export class Visualizer {
         this.canvasContext.lineTo(xPosition(lastPoint.x), yPosition(lastPoint.y));
 
         this.canvasContext.fillStyle = color;
-        this.canvasContext.lineWidth = 1;
         this.canvasContext.fill();
-        this.canvasContext.stroke();
     }
 
     drawDot(position: Vector2D) {
-        this.canvasContext.fillStyle = "black";
+        this.canvasContext.fillStyle = "white";
         this.canvasContext.fillRect(position.x - this.camera.x, position.y - this.camera.y, 2, 2);
     }
 

@@ -79,9 +79,19 @@ export class Game {
 
     // TODO for development - remove
     private drawGrid() {
-        for (var i = -10; i <= 10; i++) {
-            for (var j = -10; j <= 10; j++) {
-                this.visualizer.drawDot(new Vector2D(i * 50, j * 50));
+        console.log(this.spaceShip.position);
+
+        var latticeSpacing = 100;
+        var bufferWidth = 7; // to account for camera lag behind ship at velocity
+
+        var bufferDistance = latticeSpacing * bufferWidth;
+
+        var startIntervalX = (Math.ceil((this.spaceShip.position.x - (this.canvas.width / 2)) / latticeSpacing) * latticeSpacing) - bufferDistance;
+        var startIntervalY = Math.ceil((this.spaceShip.position.y - (this.canvas.height / 2)) / latticeSpacing) * latticeSpacing - bufferDistance;
+
+        for (var x = startIntervalX; x <= (startIntervalX + this.canvas.width + bufferDistance) * 2; x += latticeSpacing) {
+            for (var y = startIntervalY; y <= (startIntervalY + this.canvas.height + bufferDistance) * 2; y += latticeSpacing) {
+                this.visualizer.drawDot(new Vector2D(x, y));
             }
         }
     }
