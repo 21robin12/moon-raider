@@ -16,9 +16,9 @@ export class Game {
         this.canvas = document.getElementById('canvas');
         this.canvasContext = this.canvas.getContext('2d');
 
-        this.spaceShip = new SpaceShip(300, 300);
+        this.spaceShip = new SpaceShip(0, 0);
         this.keyHandler = new KeyHandler();
-        this.visualizer = new Visualizer(this.canvasContext);
+        this.visualizer = new Visualizer(this.canvas, this.canvasContext);
         this.lastFrameMs = 0;
     }
 
@@ -63,43 +63,12 @@ export class Game {
     }
 
     private drawEverything() {
+        var camera = new Vector2D(this.spaceShip.position.x, this.spaceShip.position.y);
+        this.visualizer.setCamera(camera);
+
         this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.visualizer.drawDot(new Vector2D(100, 100));
-        this.visualizer.drawDot(new Vector2D(200, 100));
-        this.visualizer.drawDot(new Vector2D(300, 100));
-        this.visualizer.drawDot(new Vector2D(400, 100));
-        this.visualizer.drawDot(new Vector2D(500, 100));
-
-        this.visualizer.drawDot(new Vector2D(100, 200));
-        this.visualizer.drawDot(new Vector2D(200, 200));
-        this.visualizer.drawDot(new Vector2D(300, 200));
-        this.visualizer.drawDot(new Vector2D(400, 200));
-        this.visualizer.drawDot(new Vector2D(500, 200));
-
-        this.visualizer.drawDot(new Vector2D(100, 300));
-        this.visualizer.drawDot(new Vector2D(200, 300));
-        this.visualizer.drawDot(new Vector2D(300, 300));
-        this.visualizer.drawDot(new Vector2D(400, 300));
-        this.visualizer.drawDot(new Vector2D(500, 300));
-
-        this.visualizer.drawDot(new Vector2D(100, 400));
-        this.visualizer.drawDot(new Vector2D(200, 400));
-        this.visualizer.drawDot(new Vector2D(300, 400));
-        this.visualizer.drawDot(new Vector2D(400, 400));
-        this.visualizer.drawDot(new Vector2D(500, 400));
-
-        this.visualizer.drawDot(new Vector2D(100, 500));
-        this.visualizer.drawDot(new Vector2D(200, 500));
-        this.visualizer.drawDot(new Vector2D(300, 500));
-        this.visualizer.drawDot(new Vector2D(400, 500));
-        this.visualizer.drawDot(new Vector2D(500, 500));
-
-        this.visualizer.drawDot(new Vector2D(100, 600));
-        this.visualizer.drawDot(new Vector2D(200, 600));
-        this.visualizer.drawDot(new Vector2D(300, 600));
-        this.visualizer.drawDot(new Vector2D(400, 600));
-        this.visualizer.drawDot(new Vector2D(500, 600));
+        this.drawGrid();
 
         this.visualizer.draw(
             this.spaceShip.position,
@@ -107,5 +76,14 @@ export class Game {
             PointArrays.spaceShip,
             "#00FFFF"
         );
+    }
+
+    // TODO for development - remove
+    private drawGrid() {
+        for (var i = -10; i <= 10; i++) {
+            for (var j = -10; j <= 10; j++) {
+                this.visualizer.drawDot(new Vector2D(i * 50, j * 50));
+            }
+        }
     }
 }

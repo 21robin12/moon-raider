@@ -1,14 +1,25 @@
 import { Vector2D } from "../physics/Vector2D";
 
 export class Visualizer {
+    canvas: any;
     canvasContext: any;
+    camera: Vector2D;
 
-    constructor(canvasContext: any) {
+    constructor(canvas: any, canvasContext: any) {
+        this.canvas = canvas;
         this.canvasContext = canvasContext;
+        this.camera = new Vector2D(-100, -100);
+    }
+
+    setCamera(spaceShipPosition: Vector2D) {
+        this.camera = new Vector2D(spaceShipPosition.x - this.canvas.width / 2, spaceShipPosition.y - this.canvas.height / 2);
     }
 
     draw(position: Vector2D, angle: number, pointsArray: Vector2D[], color: string) {
         this.canvasContext.beginPath();
+
+        var xPosition = (x: any) => x + position.x - this.camera.x;
+        var yPosition = (y: any) => y + position.y - this.camera.y;
 
         var isFirst = true;
         for (var i = 0; i < pointsArray.length; i++) {
@@ -18,9 +29,9 @@ export class Visualizer {
             point.rotate(angle);
 
             if (isFirst) {
-                this.canvasContext.moveTo(point.x + position.x, point.y + position.y);
+                this.canvasContext.moveTo(xPosition(point.x), yPosition(point.y));
             } else {
-                this.canvasContext.lineTo(point.x + position.x, point.y + position.y);
+                this.canvasContext.lineTo(xPosition(point.x), yPosition(point.y));
             }
 
             isFirst = false;
@@ -29,7 +40,7 @@ export class Visualizer {
         // final point to reconnect shape
         var lastPoint = new Vector2D(pointsArray[0].x, pointsArray[0].y);
         lastPoint.rotate(angle);
-        this.canvasContext.lineTo(lastPoint.x + position.x, lastPoint.y + position.y);
+        this.canvasContext.lineTo(xPosition(lastPoint.x), yPosition(lastPoint.y));
 
         this.canvasContext.fillStyle = color;
         this.canvasContext.lineWidth = 1;
@@ -39,7 +50,7 @@ export class Visualizer {
 
     drawDot(position: Vector2D) {
         this.canvasContext.fillStyle = "black";
-        this.canvasContext.fillRect(position.x, position.y, 2, 2);
+        this.canvasContext.fillRect(position.x - this.camera.x, position.y - this.camera.y, 2, 2);
     }
 
     drawText(text: string, position: Vector2D, color: string) {
@@ -48,7 +59,7 @@ export class Visualizer {
         this.canvasContext.lineWidth = 1;
         this.canvasContext.font = "bold 20px Arial";
         this.canvasContext.textAlign = "center";
-        this.canvasContext.fillText(text, position.x, position.y);
-        this.canvasContext.strokeText(text, position.x, position.y);
+        this.canvasContext.fillText(text, position.x - this.camera.x, position.y - this.camera.y);
+        this.canvasContext.strokeText(text, position.x - this.camera.x, position.y - this.camera.y);
     }
 }
