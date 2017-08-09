@@ -1,5 +1,8 @@
+import { Game } from "./game/Game";
+
 class Program {
     run(): void {
-        console.log("running");
+        var game = new Game();
+        game.start();
     }
 }
