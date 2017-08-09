@@ -1,4 +1,5 @@
 import { SpaceShip } from "../physics/SpaceShip";
+import { Vector2D } from "../physics/Vector2D";
 import { Visualizer } from "../drawing/Visualizer";
 import { PointArrays } from "../drawing/PointArrays";
 import { KeyHandler } from "./KeyHandler";
@@ -63,6 +64,43 @@ export class Game {
 
     private drawEverything() {
         this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.visualizer.drawDot(new Vector2D(100, 100));
+        this.visualizer.drawDot(new Vector2D(200, 100));
+        this.visualizer.drawDot(new Vector2D(300, 100));
+        this.visualizer.drawDot(new Vector2D(400, 100));
+        this.visualizer.drawDot(new Vector2D(500, 100));
+
+        this.visualizer.drawDot(new Vector2D(100, 200));
+        this.visualizer.drawDot(new Vector2D(200, 200));
+        this.visualizer.drawDot(new Vector2D(300, 200));
+        this.visualizer.drawDot(new Vector2D(400, 200));
+        this.visualizer.drawDot(new Vector2D(500, 200));
+
+        this.visualizer.drawDot(new Vector2D(100, 300));
+        this.visualizer.drawDot(new Vector2D(200, 300));
+        this.visualizer.drawDot(new Vector2D(300, 300));
+        this.visualizer.drawDot(new Vector2D(400, 300));
+        this.visualizer.drawDot(new Vector2D(500, 300));
+
+        this.visualizer.drawDot(new Vector2D(100, 400));
+        this.visualizer.drawDot(new Vector2D(200, 400));
+        this.visualizer.drawDot(new Vector2D(300, 400));
+        this.visualizer.drawDot(new Vector2D(400, 400));
+        this.visualizer.drawDot(new Vector2D(500, 400));
+
+        this.visualizer.drawDot(new Vector2D(100, 500));
+        this.visualizer.drawDot(new Vector2D(200, 500));
+        this.visualizer.drawDot(new Vector2D(300, 500));
+        this.visualizer.drawDot(new Vector2D(400, 500));
+        this.visualizer.drawDot(new Vector2D(500, 500));
+
+        this.visualizer.drawDot(new Vector2D(100, 600));
+        this.visualizer.drawDot(new Vector2D(200, 600));
+        this.visualizer.drawDot(new Vector2D(300, 600));
+        this.visualizer.drawDot(new Vector2D(400, 600));
+        this.visualizer.drawDot(new Vector2D(500, 600));
+
         this.visualizer.draw(
             this.spaceShip.position,
             this.spaceShip.angle,

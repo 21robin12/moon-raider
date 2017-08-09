@@ -37,6 +37,11 @@ export class Visualizer {
         this.canvasContext.stroke();
     }
 
+    drawDot(position: Vector2D) {
+        this.canvasContext.fillStyle = "black";
+        this.canvasContext.fillRect(position.x, position.y, 2, 2);
+    }
+
     drawText(text: string, position: Vector2D, color: string) {
         this.canvasContext.fillStyle = color;
         this.canvasContext.strokeStyle = 'black';
