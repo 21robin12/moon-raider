@@ -1,5 +1,4 @@
 import { VelocityBody } from "./VelocityBody";
-import { IEvolver } from "./IEvolver";
 import { Constants } from "./Constants";
 
 export abstract class SpaceShip extends VelocityBody {

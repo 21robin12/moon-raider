@@ -4,7 +4,7 @@ import { Vector2D } from "../physics/Vector2D";
 import { Visualizer } from "../drawing/Visualizer";
 import { PointArrays } from "../drawing/PointArrays";
 import { KeyHandler } from "./KeyHandler";
-import { IEvolver } from "../physics/IEvolver";
+import { IEvolvable } from "../physics/IEvolvable";
 
 export class Game {
     player: Player;
@@ -14,18 +14,18 @@ export class Game {
     lastFrameMs: number;
     canvas: any;
     canvasContext: any;
-    evolvers: IEvolver[];
+    evolvables: IEvolvable[];
 
     constructor() {
         this.canvas = document.getElementById('canvas');
         this.canvasContext = this.canvas.getContext('2d');
 
-        this.player = new Player(0, 0);
-        this.enemy = new Enemy(200, 200);
+        this.player = new Player(0, 0, this);
+        this.enemy = new Enemy(200, 200, this);
         this.keyHandler = new KeyHandler();
         this.visualizer = new Visualizer(this.canvas, this.canvasContext);
         this.lastFrameMs = 0;
-        this.evolvers = [this.player, this.enemy];
+        this.evolvables = [this.player, this.enemy];
     }
 
     start() {
@@ -49,38 +49,8 @@ export class Game {
     }
 
     private evolve(dt: number) {
-        for (var evolver of this.evolvers) {
+        for (var evolver of this.evolvables) {
             evolver.evolve(dt);
-        }
-
-        // spaceship
-        var self = this;
-
-        var actions = [
-            { key: 37, action: function () { self.player.rotateAnticlockwise(dt); } },
-            { key: 38, action: function () { self.player.accelerate(dt); } },
-            { key: 39, action: function () { self.player.rotateClockwise(dt); } }
-        ];
-
-        for (var j = 0; j < actions.length; j++) {
-            if (this.keyHandler.pressedKeyCodes.indexOf(actions[j].key) > -1) {
-                actions[j].action();
-            }
-        }
-
-        // enemy
-        var vectorAlongEnemyAngle = new Vector2D(Math.sin(this.enemy.angle), -Math.cos(this.enemy.angle));
-        var vectorBetweenEnemyAndPlayer = new Vector2D(this.player.position.x - this.enemy.position.x, this.player.position.y - this.enemy.position.y);
-        var angleFromEnemyToPlayer = vectorAlongEnemyAngle.angleTo(vectorBetweenEnemyAndPlayer);
-
-        if (angleFromEnemyToPlayer < 0) {
-            this.enemy.rotateAnticlockwise(dt);
-        } else {
-            this.enemy.rotateClockwise(dt);
-        }
-
-        if (vectorBetweenEnemyAndPlayer.magnitude() > 300) {
-            this.enemy.accelerate(dt);
         }
     }
 

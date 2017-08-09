@@ -1,3 +1,3 @@
-export interface IEvolver {
+export interface IEvolvable {
     evolve(dt: number): void;
 }
