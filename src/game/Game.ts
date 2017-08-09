@@ -8,14 +8,16 @@ export class Game {
     keyHandler: KeyHandler;
     visualizer: Visualizer;
     lastFrameMs: number;
+    canvas: any;
+    canvasContext: any;
 
     constructor() {
-        var canvas: any = document.getElementById('canvas');
-        var canvasContext = canvas.getContext('2d');
+        this.canvas = document.getElementById('canvas');
+        this.canvasContext = this.canvas.getContext('2d');
 
         this.spaceShip = new SpaceShip(300, 300);
         this.keyHandler = new KeyHandler();
-        this.visualizer = new Visualizer(canvasContext);
+        this.visualizer = new Visualizer(this.canvasContext);
         this.lastFrameMs = 0;
     }
 
@@ -60,11 +62,12 @@ export class Game {
     }
 
     private drawEverything() {
+        this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.visualizer.draw(
             this.spaceShip.position,
             this.spaceShip.angle,
             PointArrays.spaceShip,
-            "00FFFF"
+            "#00FFFF"
         );
     }
 }
