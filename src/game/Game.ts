@@ -1,27 +1,31 @@
-import { SpaceShip } from "../physics/SpaceShip";
+import { Enemy } from "../game/Enemy";
+import { Player } from "../game/Player";
 import { Vector2D } from "../physics/Vector2D";
 import { Visualizer } from "../drawing/Visualizer";
 import { PointArrays } from "../drawing/PointArrays";
 import { KeyHandler } from "./KeyHandler";
+import { IEvolver } from "../physics/IEvolver";
 
 export class Game {
-    spaceShip: SpaceShip;
-    enemy: SpaceShip;
+    player: Player;
+    enemy: Enemy;
     keyHandler: KeyHandler;
     visualizer: Visualizer;
     lastFrameMs: number;
     canvas: any;
     canvasContext: any;
+    evolvers: IEvolver[];
 
     constructor() {
         this.canvas = document.getElementById('canvas');
         this.canvasContext = this.canvas.getContext('2d');
 
-        this.spaceShip = new SpaceShip(0, 0);
-        this.enemy = new SpaceShip(200, 200);
+        this.player = new Player(0, 0);
+        this.enemy = new Enemy(200, 200);
         this.keyHandler = new KeyHandler();
         this.visualizer = new Visualizer(this.canvas, this.canvasContext);
         this.lastFrameMs = 0;
+        this.evolvers = [this.player, this.enemy];
     }
 
     start() {
@@ -45,16 +49,17 @@ export class Game {
     }
 
     private evolve(dt: number) {
-        // spaceship
-        this.spaceShip.move(dt);
-        this.spaceShip.applyDrag(dt); 
+        for (var evolver of this.evolvers) {
+            evolver.evolve(dt);
+        }
 
+        // spaceship
         var self = this;
 
         var actions = [
-            { key: 37, action: function () { self.spaceShip.rotateAnticlockwise(dt); } },
-            { key: 38, action: function () { self.spaceShip.accelerate(dt); } },
-            { key: 39, action: function () { self.spaceShip.rotateClockwise(dt); } }
+            { key: 37, action: function () { self.player.rotateAnticlockwise(dt); } },
+            { key: 38, action: function () { self.player.accelerate(dt); } },
+            { key: 39, action: function () { self.player.rotateClockwise(dt); } }
         ];
 
         for (var j = 0; j < actions.length; j++) {
@@ -64,11 +69,8 @@ export class Game {
         }
 
         // enemy
-        this.enemy.move(dt);
-        this.enemy.applyDrag(dt); 
-
         var vectorAlongEnemyAngle = new Vector2D(Math.sin(this.enemy.angle), -Math.cos(this.enemy.angle));
-        var vectorBetweenEnemyAndPlayer = new Vector2D(this.spaceShip.position.x - this.enemy.position.x, this.spaceShip.position.y - this.enemy.position.y);
+        var vectorBetweenEnemyAndPlayer = new Vector2D(this.player.position.x - this.enemy.position.x, this.player.position.y - this.enemy.position.y);
         var angleFromEnemyToPlayer = vectorAlongEnemyAngle.angleTo(vectorBetweenEnemyAndPlayer);
 
         if (angleFromEnemyToPlayer < 0) {
@@ -83,15 +85,15 @@ export class Game {
     }
 
     private drawEverything() {
-        this.visualizer.setCamera(this.spaceShip);
+        this.visualizer.setCamera(this.player);
 
         this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.drawGrid();
 
         this.visualizer.draw(
-            this.spaceShip.position,
-            this.spaceShip.angle,
+            this.player.position,
+            this.player.angle,
             PointArrays.spaceShip,
             "#00FFFF"
         );
@@ -108,8 +110,8 @@ export class Game {
     private drawGrid() {
         var latticeSpacing = 60;
 
-        var startIntervalX = Math.ceil((this.spaceShip.position.x - this.canvas.width) / latticeSpacing) * latticeSpacing;
-        var startIntervalY = Math.ceil((this.spaceShip.position.y - this.canvas.height) / latticeSpacing) * latticeSpacing;
+        var startIntervalX = Math.ceil((this.player.position.x - this.canvas.width) / latticeSpacing) * latticeSpacing;
+        var startIntervalY = Math.ceil((this.player.position.y - this.canvas.height) / latticeSpacing) * latticeSpacing;
 
         for (var x = startIntervalX; x <= startIntervalX +  (2 * this.canvas.width); x += latticeSpacing) {
             for (var y = startIntervalY; y <= startIntervalY + (2 * this.canvas.height); y += latticeSpacing) {

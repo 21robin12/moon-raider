@@ -1,7 +1,8 @@
 import { VelocityBody } from "./VelocityBody";
+import { IEvolver } from "./IEvolver";
 import { Constants } from "./Constants";
 
-export class SpaceShip extends VelocityBody {
+export abstract class SpaceShip extends VelocityBody {
     constructor(x: number, y: number) {
         super(x, y);
     }
