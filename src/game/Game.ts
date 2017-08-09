@@ -67,7 +67,6 @@ export class Game {
         var vectorAlongEnemyAngle = new Vector2D(Math.sin(this.enemy.angle), -Math.cos(this.enemy.angle));
         var vectorBetweenEnemyAndPlayer = new Vector2D(this.spaceShip.position.x - this.enemy.position.x, this.spaceShip.position.y - this.enemy.position.y);
         var angleFromEnemyToPlayer = vectorAlongEnemyAngle.angleTo(vectorBetweenEnemyAndPlayer);
-        console.log(angleFromEnemyToPlayer); // TODO remove
     }
 
     private drawEverything() {

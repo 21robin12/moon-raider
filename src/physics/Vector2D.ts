@@ -14,14 +14,15 @@ export class Vector2D {
         this.y = y;
     }
 
-    angleTo(otherVector: Vector2D) {
-        var a = this;
-        var b = otherVector;
-        var crossProduct = a.x * b.x + a.y * b.y;
-        return Math.acos(crossProduct / (a.magnitude() * b.magnitude()));
+    angleTo(other: Vector2D) {
+        return Math.atan2(this.determinant(other), this.dotProduct(other));
     }
 
-    private magnitude() {
-        return Math.sqrt(this.x * this.x + this.y * this.y);
+    private dotProduct(other: Vector2D) {
+        return this.x * other.x + this.y * other.y;
+    }
+
+    private determinant(other: Vector2D) {
+        return this.x * other.y - this.y * other.x;
     }
 }
