@@ -6,6 +6,7 @@ import { KeyHandler } from "./KeyHandler";
 
 export class Game {
     spaceShip: SpaceShip;
+    enemy: SpaceShip;
     keyHandler: KeyHandler;
     visualizer: Visualizer;
     lastFrameMs: number;
@@ -17,6 +18,7 @@ export class Game {
         this.canvasContext = this.canvas.getContext('2d');
 
         this.spaceShip = new SpaceShip(0, 0);
+        this.enemy = new SpaceShip(200, 200);
         this.keyHandler = new KeyHandler();
         this.visualizer = new Visualizer(this.canvas, this.canvasContext);
         this.lastFrameMs = 0;
@@ -43,7 +45,7 @@ export class Game {
     }
 
     private evolve(dt: number) {
-
+        // spaceship
         this.spaceShip.move(dt);
         this.spaceShip.applyDrag(dt); 
 
@@ -60,6 +62,12 @@ export class Game {
                 actions[j].action();
             }
         }
+
+        // enemy
+        var vectorAlongEnemyAngle = new Vector2D(Math.sin(this.enemy.angle), -Math.cos(this.enemy.angle));
+        var vectorBetweenEnemyAndPlayer = new Vector2D(this.spaceShip.position.x - this.enemy.position.x, this.spaceShip.position.y - this.enemy.position.y);
+        var angleFromEnemyToPlayer = vectorAlongEnemyAngle.angleTo(vectorBetweenEnemyAndPlayer);
+        console.log(angleFromEnemyToPlayer); // TODO remove
     }
 
     private drawEverything() {
@@ -74,6 +82,13 @@ export class Game {
             this.spaceShip.angle,
             PointArrays.spaceShip,
             "#00FFFF"
+        );
+
+        this.visualizer.draw(
+            this.enemy.position,
+            this.enemy.angle,
+            PointArrays.spaceShip,
+            "#FF00FF"
         );
     }
 
