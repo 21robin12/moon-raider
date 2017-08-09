@@ -63,8 +63,7 @@ export class Game {
     }
 
     private drawEverything() {
-        var camera = new Vector2D(this.spaceShip.position.x, this.spaceShip.position.y);
-        this.visualizer.setCamera(camera);
+        this.visualizer.setCamera(this.spaceShip);
 
         this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
 

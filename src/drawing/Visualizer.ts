@@ -1,4 +1,5 @@
 import { Vector2D } from "../physics/Vector2D";
+import { SpaceShip } from "../physics/SpaceShip";
 
 export class Visualizer {
     canvas: any;
@@ -11,8 +12,9 @@ export class Visualizer {
         this.camera = new Vector2D(-100, -100);
     }
 
-    setCamera(spaceShipPosition: Vector2D) {
-        this.camera = new Vector2D(spaceShipPosition.x - this.canvas.width / 2, spaceShipPosition.y - this.canvas.height / 2);
+    setCamera(spaceShip: SpaceShip) {
+        var offsetMultiplier = 300;
+        this.camera = new Vector2D(spaceShip.position.x - (spaceShip.velocity.x * offsetMultiplier) - this.canvas.width / 2, spaceShip.position.y - (spaceShip.velocity.y * offsetMultiplier) - this.canvas.height / 2);
     }
 
     draw(position: Vector2D, angle: number, pointsArray: Vector2D[], color: string) {
