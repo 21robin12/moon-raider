@@ -18,6 +18,10 @@ export class Vector2D {
         return Math.atan2(this.determinant(other), this.dotProduct(other));
     }
 
+    magnitude() {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+
     private dotProduct(other: Vector2D) {
         return this.x * other.x + this.y * other.y;
     }
