@@ -22,6 +22,22 @@ export class Vector2D {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
+    scaleBy(scaleFactor: number) {
+        return new Vector2D(this.x * scaleFactor, this.y * scaleFactor);
+    }
+
+    add(other: Vector2D) {
+        return new Vector2D(this.x + other.x, this.y + other.y);
+    }
+
+    subtract(other: Vector2D) {
+        return new Vector2D(this.x - other.x, this.y - other.y);
+    }
+
+    static fromPolar(angle: number, magnitude: number) {
+        return new Vector2D(magnitude * Math.sin(angle), -magnitude * Math.cos(angle));
+    }
+
     private dotProduct(other: Vector2D) {
         return this.x * other.x + this.y * other.y;
     }

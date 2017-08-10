@@ -15,8 +15,8 @@ export class Enemy extends SpaceShip implements IEvolvable {
         this.move(dt);
         this.applyDrag(dt);
 
-        var vectorAlongEnemyAngle = new Vector2D(Math.sin(this.angle), -Math.cos(this.angle));
-        var vectorBetweenEnemyAndPlayer = new Vector2D(this.game.player.position.x - this.position.x, this.game.player.position.y - this.position.y);
+        var vectorAlongEnemyAngle = Vector2D.fromPolar(this.angle, 1);
+        var vectorBetweenEnemyAndPlayer = this.game.player.position.subtract(this.position);
         var angleFromEnemyToPlayer = vectorAlongEnemyAngle.angleTo(vectorBetweenEnemyAndPlayer);
 
         if (angleFromEnemyToPlayer < 0) {
