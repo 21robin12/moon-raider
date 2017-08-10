@@ -5,11 +5,13 @@ import { Vector2D } from "./Vector2D";
 
 export abstract class SpaceShip extends VelocityBody {
     laserBeams: LaserBeam[];
+    lastLaserBeamMs: number;
     
     constructor(x: number, y: number) {
         super(x, y);
         
         this.laserBeams = [];
+        this.lastLaserBeamMs = 0;
     } 
 
     accelerate(dt: number) { 
@@ -34,7 +36,11 @@ export abstract class SpaceShip extends VelocityBody {
     }
 
     shoot() {
-        var laserBeam = new LaserBeam(this.position.x, this.position.y, this.angle);
-        this.laserBeams.push(laserBeam);
+        var now = new Date().getTime();
+        if(now - this.lastLaserBeamMs > 300) {
+            var laserBeam = new LaserBeam(this.position.x, this.position.y, this.angle);
+            this.laserBeams.push(laserBeam);
+            this.lastLaserBeamMs = now;
+        }
     }
 } 

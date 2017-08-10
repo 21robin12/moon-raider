@@ -13,10 +13,15 @@ export class Player extends SpaceShip implements IEvolvable {
     evolve(dt: number) {
         this.move(dt);
         this.applyDrag(dt);
-        for(var laserBeam of this.laserBeams) {
-            laserBeam.evolve(dt);
-        }
 
+        for(var i = this.laserBeams.length - 1; i >= 0; i--) {
+            if (this.laserBeams[i].expired) {
+                this.laserBeams.splice(i, 1);
+            } else {
+                this.laserBeams[i].evolve(dt);
+            }
+        }        
+        
         var self = this;
 
         var actions = [
