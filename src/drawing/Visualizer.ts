@@ -48,9 +48,9 @@ export class Visualizer {
         this.canvasContext.fill();
     }
 
-    drawDot(position: Vector2D) {
-        this.canvasContext.fillStyle = "white";
-        this.canvasContext.fillRect(position.x - this.camera.x, position.y - this.camera.y, 1, 1);
+    drawDot(position: Vector2D, color: string = "white", diameter: number = 1) {
+        this.canvasContext.fillStyle = color;
+        this.canvasContext.fillRect(position.x - this.camera.x, position.y - this.camera.y, diameter, diameter);
     }
 
     drawText(text: string, position: Vector2D, color: string) {

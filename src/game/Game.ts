@@ -69,7 +69,7 @@ export class Game {
         );
 
         for(var laserBeam of this.player.laserBeams) {
-            this.visualizer.drawDot(new Vector2D(laserBeam.position.x, laserBeam.position.y));
+            this.visualizer.drawDot(new Vector2D(laserBeam.position.x, laserBeam.position.y), "red", 2);
         }
 
         this.visualizer.draw(
