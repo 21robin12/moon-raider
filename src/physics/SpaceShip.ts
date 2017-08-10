@@ -34,7 +34,7 @@ export abstract class SpaceShip extends VelocityBody {
     }
 
     shoot() {
-        // var laserBeam = new LaserBeam(this.position.x, this.position.y, this.angle);
-        // this.laserBeams.push()
+        var laserBeam = new LaserBeam(this.position.x, this.position.y, this.angle);
+        this.laserBeams.push(laserBeam);
     }
 } 

@@ -68,6 +68,10 @@ export class Game {
             "#00FFFF"
         );
 
+        for(var laserBeam of this.player.laserBeams) {
+            this.visualizer.drawDot(new Vector2D(laserBeam.position.x, laserBeam.position.y));
+        }
+
         this.visualizer.draw(
             this.enemy.position,
             this.enemy.angle,

@@ -7,9 +7,10 @@ export class LaserBeam extends VelocityBody implements IEvolvable {
         super(x, y);
         this.angle = angle;
         this.velocity = Vector2D.fromPolar(angle, 0.01);
+        console.log("new laser beam");
     }
 
     evolve(dt: number) {
-          
+        this.move(dt);
     }
 }

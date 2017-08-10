@@ -1,5 +1,5 @@
 export class KeyHandler {
-    static relevantKeyCodes: number[] = [37, 38, 39];
+    static relevantKeyCodes: number[] = [32, 37, 38, 39];
     pressedKeyCodes: number[];
 
     constructor() {
