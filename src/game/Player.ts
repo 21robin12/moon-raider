@@ -46,7 +46,7 @@ export class Player extends SpaceShip implements IEvolvable {
         var self = this;
 
         var actions = [
-            { key: 32, action: function () { self.accelerate(dt); } }
+            { key: 32, action: function () { self.shoot(); } }
         ];
 
         for (var j = 0; j < actions.length; j++) {
@@ -59,7 +59,7 @@ export class Player extends SpaceShip implements IEvolvable {
         this.rotateTowards(this.mousePosition, dt);
 
         if(this.mouseClicked) {
-            this.shoot();
+            this.accelerate(dt);
         }
     }
 
