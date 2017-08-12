@@ -46,7 +46,7 @@ export class Player extends SpaceShip implements IEvolvable {
         var self = this;
 
         var actions = [
-            { key: 38, action: function () { self.accelerate(dt); } }
+            { key: 32, action: function () { self.accelerate(dt); } }
         ];
 
         for (var j = 0; j < actions.length; j++) {
@@ -64,8 +64,8 @@ export class Player extends SpaceShip implements IEvolvable {
     }
 
     private updateMousePosition() {
-        var x = this.position.x - (this.game.canvas.width / 2) + this.clientX;
-        var y = this.position.y - (this.game.canvas.height / 2) + this.clientY;
+        var x = this.game.visualizer.camera.x + this.clientX;
+        var y = this.game.visualizer.camera.y + this.clientY;
         this.mousePosition = new Vector2D(x, y);
     }
 }
