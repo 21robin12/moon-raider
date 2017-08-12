@@ -9,7 +9,7 @@ export class LaserBeam extends VelocityBody implements IEvolvable {
     constructor(x: number, y: number, angle: number, velocityBoost: Vector2D) {
         super(x, y);
         this.angle = angle;
-        this.velocity = Vector2D.fromPolar(angle, 0.4).add(velocityBoost);
+        this.velocity = Vector2D.fromPolar(angle, 0.5).add(velocityBoost);
         this.createdAtMs = new Date().getTime();
     }
 
