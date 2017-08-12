@@ -65,11 +65,11 @@ export class Game {
             this.player.position,
             this.player.angle,
             PointArrays.spaceShip,
-            "#00FFFF"
+            "#ddecee"
         );
 
         for(var laserBeam of this.player.laserBeams) {
-            this.visualizer.drawDot(new Vector2D(laserBeam.position.x, laserBeam.position.y), "red", 2);
+            this.visualizer.drawLine(new Vector2D(laserBeam.position.x, laserBeam.position.y), laserBeam.angle, 20, "lime", 2);
         }
 
         this.visualizer.drawDot(new Vector2D(this.player.mousePosition.x, this.player.mousePosition.y), "lime", 2);
@@ -78,7 +78,7 @@ export class Game {
             this.enemy.position,
             this.enemy.angle,
             PointArrays.spaceShip,
-            "#FF00FF"
+            "#777777"
         );
     }
 

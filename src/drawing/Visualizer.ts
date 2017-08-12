@@ -53,6 +53,17 @@ export class Visualizer {
         this.canvasContext.fillRect(position.x - this.camera.x, position.y - this.camera.y, diameter, diameter);
     }
 
+    drawLine(startPosition: Vector2D, angle: number, length: number, color: string, width: number = 1) {
+        var endPosition = startPosition.add(Vector2D.fromPolar(angle, length));
+        
+        this.canvasContext.lineWidth = width;
+        this.canvasContext.strokeStyle = color;
+        this.canvasContext.beginPath();
+        this.canvasContext.moveTo(startPosition.x - this.camera.x, startPosition.y - this.camera.y);
+        this.canvasContext.lineTo(endPosition.x - this.camera.x, endPosition.y - this.camera.y);
+        this.canvasContext.stroke();
+    }
+
     drawText(text: string, position: Vector2D, color: string) {
         this.canvasContext.fillStyle = color;
         this.canvasContext.strokeStyle = 'black';
