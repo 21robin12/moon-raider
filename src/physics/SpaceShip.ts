@@ -35,6 +35,18 @@ export abstract class SpaceShip extends VelocityBody {
         }
     }
 
+    rotateTowards (position: Vector2D, dt: number) {
+        var vectorAlongAngle = Vector2D.fromPolar(this.angle, 1);
+        var vectorToPosition = position.subtract(this.position);
+        var angleFromThisToPosition = vectorAlongAngle.angleTo(vectorToPosition);
+
+        if (angleFromThisToPosition < -0.05) {
+            this.rotateAnticlockwise(dt);
+        } else if (angleFromThisToPosition > 0.05){
+            this.rotateClockwise(dt);
+        }
+    }
+
     shoot() {
         var now = new Date().getTime();
         if(now - this.lastLaserBeamMs > 300) {

@@ -72,6 +72,8 @@ export class Game {
             this.visualizer.drawDot(new Vector2D(laserBeam.position.x, laserBeam.position.y), "red", 2);
         }
 
+        this.visualizer.drawDot(new Vector2D(this.player.mousePosition.x, this.player.mousePosition.y), "lime", 2);
+
         this.visualizer.draw(
             this.enemy.position,
             this.enemy.angle,
