@@ -18,7 +18,13 @@ export abstract class SpaceShip extends VelocityBody {
         // v = u + at
         var a = Vector2D.fromPolar(this.angle,  Constants.spaceShipAcceleration);
         var at = a.scaleBy(dt); 
-        this.velocity = this.velocity.add(at);
+        var newVelocity = this.velocity.add(at);
+        var maxSpeed = 0.2; // TODO in constants
+        var speed = newVelocity.magnitude();
+        if(speed > maxSpeed) {
+            newVelocity = newVelocity.scaleBy(maxSpeed / newVelocity.magnitude());
+        }
+        this.velocity = newVelocity;
     }
 
     rotateClockwise (dt: number) {
