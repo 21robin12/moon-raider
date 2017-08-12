@@ -40,9 +40,10 @@ export abstract class SpaceShip extends VelocityBody {
         var vectorToPosition = position.subtract(this.position);
         var angleFromThisToPosition = vectorAlongAngle.angleTo(vectorToPosition);
 
-        if (angleFromThisToPosition < -0.05) {
+        var minimumRotateAngle = 0.02;
+        if (angleFromThisToPosition < -minimumRotateAngle) {
             this.rotateAnticlockwise(dt);
-        } else if (angleFromThisToPosition > 0.05){
+        } else if (angleFromThisToPosition > minimumRotateAngle){
             this.rotateClockwise(dt);
         }
     }
