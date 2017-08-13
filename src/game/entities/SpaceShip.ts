@@ -3,6 +3,7 @@ import { VelocityBody } from "../../framework/physics/VelocityBody";
 import { Vector2D } from "../../framework/physics/Vector2D";
 import { Constants } from "../../framework/physics/Constants";
 
+// TODO is a component, not an entity. move into correct folder.
 export abstract class SpaceShip extends VelocityBody {
     laserBeams: LaserBeam[];
     lastLaserBeamMs: number;

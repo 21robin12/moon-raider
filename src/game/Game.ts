@@ -60,7 +60,7 @@ export class Game {
     }
 
     private getCamera() {
-        var offsetMultiplier = 700; // TODO into constants
+        var offsetMultiplier = 700;
         var x = this.system.player.position.x - (this.system.player.velocity.x * offsetMultiplier) - this.canvas.width / 2;
         var y = this.system.player.position.y - (this.system.player.velocity.y * offsetMultiplier) - this.canvas.height / 2;
         return new Vector2D(x, y);
