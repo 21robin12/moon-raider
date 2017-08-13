@@ -1,4 +1,4 @@
-export class KeyHandler {
+export class InputHandler {
     static relevantKeyCodes: number[] = [32, 37, 38, 39];
     pressedKeyCodes: number[];
 
@@ -18,14 +18,14 @@ export class KeyHandler {
 
     private onKeyDown = function (e: any) {
         e = e || window.event;
-        if (KeyHandler.relevantKeyCodes.indexOf(e.keyCode) > -1) {
+        if (InputHandler.relevantKeyCodes.indexOf(e.keyCode) > -1) {
             this.addKey(e.keyCode);
         }
     };
 
     private onKeyUp = function (e: any) {
         e = e || window.event;
-        if (KeyHandler.relevantKeyCodes.indexOf(e.keyCode) > -1) {
+        if (InputHandler.relevantKeyCodes.indexOf(e.keyCode) > -1) {
             this.removeKey(e.keyCode);
         }
     };

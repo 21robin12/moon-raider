@@ -54,7 +54,7 @@ export class Player extends SpaceShip implements IEntity {
         ];
 
         for (var j = 0; j < actions.length; j++) {
-            if (system.keyHandler.pressedKeyCodes.indexOf(actions[j].key) > -1) {
+            if (system.inputHandler.pressedKeyCodes.indexOf(actions[j].key) > -1) {
                 actions[j].action();
             }
         }
