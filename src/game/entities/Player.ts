@@ -7,31 +7,8 @@ import { System } from '../System';
 import { PointArrays } from "../../framework/drawing/PointArrays";
 
 export class Player extends SpaceShip implements IEntity {
-    game: Game; // TODO remove - keyhandler should store mouse pos
-    clientX: number; // TODO maybe these should live on keyhander?
-    clientY: number;
-    mousePosition: Vector2D;
-    mouseClicked: boolean;
-
-    constructor(x: number, y: number, game: Game) {
+    constructor(x: number, y: number) {
         super(x, y);
-        this.mousePosition = new Vector2D(0, 0);
-        this.mouseClicked = false;
-        this.game = game;
-
-        var self = this;
-        onmousemove = function(e) {
-            self.clientX = e.clientX;
-            self.clientY = e.clientY;            
-        };
-
-        onmousedown = function(e) {
-            self.mouseClicked = true;
-        };
-
-        onmouseup = function(e) {
-            self.mouseClicked = false;
-        };
     }
 
     evolve(system: System, dt: number) {
@@ -59,10 +36,9 @@ export class Player extends SpaceShip implements IEntity {
             }
         }
 
-        this.updateMousePosition();
-        this.rotateTowards(this.mousePosition, dt);
+        this.rotateTowards(system.inputHandler.mousePosition, dt);
 
-        if(this.mouseClicked) {
+        if(system.inputHandler.mouseClicked) {
             this.accelerate(dt);
         }
     }
@@ -78,11 +54,5 @@ export class Player extends SpaceShip implements IEntity {
         for(var laserBeam of this.laserBeams) {
             laserBeam.draw(visualizer);
         }
-    }
-
-    private updateMousePosition() {
-        var x = this.game.visualizer.camera.x + this.clientX;
-        var y = this.game.visualizer.camera.y + this.clientY;
-        this.mousePosition = new Vector2D(x, y);
     }
 }

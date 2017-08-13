@@ -9,12 +9,7 @@ export class Visualizer {
     constructor(canvas: any, canvasContext: any) {
         this.canvas = canvas;
         this.canvasContext = canvasContext;
-        this.camera = new Vector2D(-100, -100);
-    }
-
-    setCamera(spaceShip: SpaceShip) {
-        var offsetMultiplier = 700;
-        this.camera = new Vector2D(spaceShip.position.x - (spaceShip.velocity.x * offsetMultiplier) - this.canvas.width / 2, spaceShip.position.y - (spaceShip.velocity.y * offsetMultiplier) - this.canvas.height / 2);
+        this.camera = new Vector2D(0, 0);
     }
 
     draw(position: Vector2D, angle: number, pointsArray: Vector2D[], color: string) {
