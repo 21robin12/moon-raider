@@ -1,9 +1,9 @@
-import { SpaceShip } from "../physics/SpaceShip";
-import { IEvolvable } from "../physics/IEvolvable";
-import { Vector2D } from "../physics/Vector2D";
-import { Game } from "./Game";
+import { Game } from '../Game';
+import { SpaceShip } from './SpaceShip';
+import { IEntity } from './IEntity';
+import { Visualizer } from '../../framework/drawing/Visualizer';
 
-export class Enemy extends SpaceShip implements IEvolvable {
+export class Enemy extends SpaceShip implements IEntity {
     game: Game;
 
     constructor(x: number, y: number, game: Game) {
@@ -20,5 +20,9 @@ export class Enemy extends SpaceShip implements IEvolvable {
         if (this.game.player.position.subtract(this.position).magnitude() > 500) {
             this.accelerate(dt);
         }
+    }
+
+    draw(visualizer: Visualizer): void {
+        throw new Error("Method not implemented.");
     }
 }

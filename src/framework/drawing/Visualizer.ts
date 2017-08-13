@@ -1,5 +1,5 @@
 import { Vector2D } from "../physics/Vector2D";
-import { SpaceShip } from "../physics/SpaceShip";
+import { SpaceShip } from '../../game/entities/SpaceShip'; // TODO move out of framework - camera calcs in Game
 
 export class Visualizer {
     canvas: any;

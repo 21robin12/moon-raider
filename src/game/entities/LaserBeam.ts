@@ -1,8 +1,9 @@
-import { VelocityBody } from "./VelocityBody";
-import { IEvolvable } from "./IEvolvable";
-import { Vector2D } from "./Vector2D";
+import { VelocityBody } from "../../framework/physics/VelocityBody";
+import { IEntity } from './IEntity';
+import { Vector2D } from "../../framework/physics/Vector2D";
+import { Visualizer } from '../../framework/drawing/Visualizer';
 
-export class LaserBeam extends VelocityBody implements IEvolvable {
+export class LaserBeam extends VelocityBody implements IEntity {
     createdAtMs: number;
     expired: boolean;
 
@@ -18,5 +19,9 @@ export class LaserBeam extends VelocityBody implements IEvolvable {
         if(new Date().getTime() - this.createdAtMs > 3000) {
             this.expired = true;
         }
+    }
+
+    draw(visualizer: Visualizer): void {
+        throw new Error("Method not implemented.");
     }
 }

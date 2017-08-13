@@ -1,20 +1,18 @@
-import { Enemy } from "../game/Enemy";
-import { Player } from "../game/Player";
-import { Vector2D } from "../physics/Vector2D";
-import { Visualizer } from "../drawing/Visualizer";
-import { PointArrays } from "../drawing/PointArrays";
-import { KeyHandler } from "./KeyHandler";
-import { IEvolvable } from "../physics/IEvolvable";
+import { Player } from './entities/Player';
+import { Enemy } from './entities/Enemy';
+import { KeyHandler } from '../framework/input/KeyHandler';
+import { Visualizer } from '../framework/drawing/Visualizer';
+import { PointArrays } from "../framework/drawing/PointArrays";
+import { Vector2D } from "../framework/physics/Vector2D";
 
 export class Game {
-    player: Player;
+    player: Player; // TODO all entities into System (maybe EntityManager or something?)
     enemy: Enemy;
     keyHandler: KeyHandler;
     visualizer: Visualizer;
     lastFrameMs: number;
     canvas: any;
     canvasContext: any;
-    evolvables: IEvolvable[];
 
     constructor() {
         this.canvas = document.getElementById('canvas');
@@ -25,7 +23,6 @@ export class Game {
         this.keyHandler = new KeyHandler();
         this.visualizer = new Visualizer(this.canvas, this.canvasContext);
         this.lastFrameMs = 0;
-        this.evolvables = [this.player, this.enemy];
     }
 
     start() {
@@ -49,9 +46,8 @@ export class Game {
     }
 
     private evolve(dt: number) {
-        for (var evolver of this.evolvables) {
-            evolver.evolve(dt);
-        }
+        this.player.evolve(dt);
+        this.enemy.evolve(dt);
     }
 
     private drawEverything() {

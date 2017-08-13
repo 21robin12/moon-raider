@@ -1,9 +1,10 @@
-import { SpaceShip } from "../physics/SpaceShip";
-import { IEvolvable } from "../physics/IEvolvable";
-import { Vector2D } from "../physics/Vector2D";
-import { Game } from "./Game";
+import { Game } from '../Game';
+import { SpaceShip } from './SpaceShip';
+import { IEntity } from './IEntity';
+import { Visualizer } from '../../framework/drawing/Visualizer';
+import { Vector2D } from "../../framework/physics/Vector2D";
 
-export class Player extends SpaceShip implements IEvolvable {
+export class Player extends SpaceShip implements IEntity {
     game: Game;
     clientX: number; // TODO maybe these should live on keyhander?
     clientY: number;
@@ -61,6 +62,10 @@ export class Player extends SpaceShip implements IEvolvable {
         if(this.mouseClicked) {
             this.accelerate(dt);
         }
+    }
+
+    draw(visualizer: Visualizer): void {
+        throw new Error("Method not implemented.");
     }
 
     private updateMousePosition() {

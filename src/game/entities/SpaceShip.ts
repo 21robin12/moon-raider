@@ -1,7 +1,7 @@
-import { VelocityBody } from "./VelocityBody";
-import { LaserBeam } from "./LaserBeam";
-import { Constants } from "./Constants";
-import { Vector2D } from "./Vector2D";
+import { LaserBeam } from './LaserBeam';
+import { VelocityBody } from "../../framework/physics/VelocityBody";
+import { Vector2D } from "../../framework/physics/Vector2D";
+import { Constants } from "../../framework/physics/Constants";
 
 export abstract class SpaceShip extends VelocityBody {
     laserBeams: LaserBeam[];
