@@ -34,6 +34,10 @@ export class Vector2D {
         return new Vector2D(this.x - other.x, this.y - other.y);
     }
 
+    distanceTo(other: Vector2D) {
+        return this.subtract(other).magnitude();
+    }
+
     static fromPolar(angle: number, magnitude: number) {
         return new Vector2D(magnitude * Math.sin(angle), -magnitude * Math.cos(angle));
     }

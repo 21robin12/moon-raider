@@ -57,7 +57,7 @@ export abstract class SpaceShip extends VelocityBody {
     shoot() {
         var now = new Date().getTime();
         if(now - this.lastLaserBeamMs > 200) {
-            var laserBeam = new LaserBeam(this.position.x, this.position.y, this.angle, this.velocity);
+            var laserBeam = new LaserBeam(this.position.x, this.position.y, this.angle, this);
             this.laserBeams.push(laserBeam);
             this.lastLaserBeamMs = now;
         }
