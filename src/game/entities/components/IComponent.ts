@@ -1,1 +1,0 @@
-// TODO - components probably won't have an interface, they're just what entities consist of

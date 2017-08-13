@@ -6,7 +6,6 @@ import { System } from '../System';
 import { PointArrays } from "../../framework/drawing/PointArrays";
 import { SpaceShip } from './components/SpaceShip';
 
-// TODO should have spaceship as a property, not inheritence
 export class Player extends SpaceShip implements IEntity {
     constructor(x: number, y: number) {
         super(x, y);
