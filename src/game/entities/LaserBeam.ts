@@ -23,6 +23,6 @@ export class LaserBeam extends VelocityBody implements IEntity {
     }
 
     draw(visualizer: Visualizer): void {
-        visualizer.drawLine(new Vector2D(this.position.x, this.position.y), this.angle, 20, "lime", 2); // TODO why new vector2D here? can I just pass pos?
+        visualizer.drawLine(this.position, this.angle, 20, "lime", 2);
     }
 }
