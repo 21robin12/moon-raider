@@ -49,8 +49,7 @@ export class Game {
     }
 
     private drawEverything() {
-        this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.drawGrid(); // TODO grid should be an entity since it's something that gets drawn
+        this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height); 
 
         for(var entity of this.system.entities) {
             entity.draw(this.visualizer);
@@ -64,19 +63,5 @@ export class Game {
         var x = this.system.player.position.x - (this.system.player.velocity.x * offsetMultiplier) - this.canvas.width / 2;
         var y = this.system.player.position.y - (this.system.player.velocity.y * offsetMultiplier) - this.canvas.height / 2;
         return new Vector2D(x, y);
-    }
-
-    // TODO for development - remove
-    private drawGrid() {
-        var latticeSpacing = 60;
-
-        var startIntervalX = Math.ceil((this.system.player.position.x - this.canvas.width) / latticeSpacing) * latticeSpacing;
-        var startIntervalY = Math.ceil((this.system.player.position.y - this.canvas.height) / latticeSpacing) * latticeSpacing;
-
-        for (var x = startIntervalX; x <= startIntervalX +  (2 * this.canvas.width); x += latticeSpacing) {
-            for (var y = startIntervalY; y <= startIntervalY + (2 * this.canvas.height); y += latticeSpacing) {
-                this.visualizer.drawDot(new Vector2D(x, y));
-            }
-        }
     }
 }
