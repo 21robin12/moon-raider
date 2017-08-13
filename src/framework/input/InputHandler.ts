@@ -3,7 +3,7 @@ import { Vector2D } from '../physics/Vector2D';
 export class InputHandler {
     static relevantKeyCodes: number[] = [32, 37, 38, 39];
 
-    clientX: number; // TODO maybe these should live on keyhander?
+    clientX: number;
     clientY: number;
     mousePosition: Vector2D;
     mouseClicked: boolean;
