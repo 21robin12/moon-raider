@@ -2,6 +2,7 @@ import { VelocityBody } from "../../framework/physics/VelocityBody";
 import { IEntity } from './IEntity';
 import { Vector2D } from "../../framework/physics/Vector2D";
 import { Visualizer } from '../../framework/drawing/Visualizer';
+import { System } from '../System';
 
 export class LaserBeam extends VelocityBody implements IEntity {
     createdAtMs: number;
@@ -14,7 +15,7 @@ export class LaserBeam extends VelocityBody implements IEntity {
         this.createdAtMs = new Date().getTime();
     }
 
-    evolve(dt: number) {
+    evolve(system: System, dt: number) {
         this.move(dt);
         if(new Date().getTime() - this.createdAtMs > 3000) {
             this.expired = true;
@@ -22,6 +23,6 @@ export class LaserBeam extends VelocityBody implements IEntity {
     }
 
     draw(visualizer: Visualizer): void {
-        throw new Error("Method not implemented.");
+        visualizer.drawLine(new Vector2D(this.position.x, this.position.y), this.angle, 20, "lime", 2); // TODO why new vector2D here? can I just pass pos?
     }
 }

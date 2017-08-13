@@ -2,27 +2,31 @@ import { Game } from '../Game';
 import { SpaceShip } from './SpaceShip';
 import { IEntity } from './IEntity';
 import { Visualizer } from '../../framework/drawing/Visualizer';
+import { System } from '../System';
+import { PointArrays } from "../../framework/drawing/PointArrays";
 
 export class Enemy extends SpaceShip implements IEntity {
-    game: Game;
-
-    constructor(x: number, y: number, game: Game) {
+    constructor(x: number, y: number) {
         super(x, y);
-        this.game = game;
     }
 
-    evolve(dt: number) {
+    evolve(system: System, dt: number) {
         this.move(dt);
         this.applyDrag(dt);
 
-        this.rotateTowards(this.game.player.position, dt);
+        this.rotateTowards(system.player.position, dt);
 
-        if (this.game.player.position.subtract(this.position).magnitude() > 500) {
+        if (system.player.position.subtract(this.position).magnitude() > 500) {
             this.accelerate(dt);
         }
     }
 
     draw(visualizer: Visualizer): void {
-        throw new Error("Method not implemented.");
+        visualizer.draw(
+            this.position,
+            this.angle,
+            PointArrays.spaceShip,
+            "#777777"
+        );
     }
 }
