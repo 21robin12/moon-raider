@@ -18,7 +18,7 @@ export class Background implements IEntity {
 
         for (var x = startIntervalX; x <= startIntervalX +  (2 * visualizer.canvas.width); x += latticeSpacing) {
             for (var y = startIntervalY; y <= startIntervalY + (2 * visualizer.canvas.height); y += latticeSpacing) {
-                visualizer.drawDot(new Vector2D(x, y));
+                visualizer.drawDot(new Vector2D(x, y), "white", 2);
             }
         }
     }
