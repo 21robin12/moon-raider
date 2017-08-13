@@ -1,6 +1,5 @@
 import { Player } from './entities/Player';
 import { Enemy } from './entities/Enemy';
-import { KeyHandler } from '../framework/input/KeyHandler';
 import { Visualizer } from '../framework/drawing/Visualizer';
 import { PointArrays } from "../framework/drawing/PointArrays";
 import { Vector2D } from "../framework/physics/Vector2D";
