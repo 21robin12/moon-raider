@@ -54,8 +54,6 @@ export class Game {
         for(var entity of this.system.entities) {
             entity.draw(this.visualizer);
         }
-
-        this.visualizer.drawDot(new Vector2D(this.system.inputHandler.mousePosition.x, this.system.inputHandler.mousePosition.y), "lime", 4); // TODO as entity
     }
 
     private getCamera() {
