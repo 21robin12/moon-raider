@@ -15,14 +15,13 @@ export class Player extends SpaceShip implements IEntity {
         this.move(dt);
         this.applyDrag(dt);
 
-        // TODO should an entity be responsible for evolving its subentities? or should they all live on System?
         for(var i = this.laserBeams.length - 1; i >= 0; i--) {
             if (this.laserBeams[i].expired) {
                 this.laserBeams.splice(i, 1);
             } else {
                 this.laserBeams[i].evolve(system, dt);
             }
-        }        
+        }         
         
         var self = this;
 
