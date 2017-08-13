@@ -1,10 +1,10 @@
 import { Game } from '../Game';
-import { SpaceShip } from './SpaceShip';
 import { IEntity } from './IEntity';
 import { Visualizer } from '../../framework/drawing/Visualizer';
 import { Vector2D } from "../../framework/physics/Vector2D";
 import { System } from '../System';
 import { PointArrays } from "../../framework/drawing/PointArrays";
+import { SpaceShip } from './components/SpaceShip';
 
 // TODO should have spaceship as a property, not inheritence
 export class Player extends SpaceShip implements IEntity {

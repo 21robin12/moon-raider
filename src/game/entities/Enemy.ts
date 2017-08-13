@@ -1,9 +1,9 @@
 import { Game } from '../Game';
-import { SpaceShip } from './SpaceShip';
 import { IEntity } from './IEntity';
 import { Visualizer } from '../../framework/drawing/Visualizer';
 import { System } from '../System';
 import { PointArrays } from "../../framework/drawing/PointArrays";
+import { SpaceShip } from './components/SpaceShip';
 
 export class Enemy extends SpaceShip implements IEntity {
     constructor(x: number, y: number) {
