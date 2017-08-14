@@ -3,7 +3,7 @@
 ### 1: Clone repository from GitHub
 
  - Create a private and public SSH keypair using PuTTYgen (cursor position for randomness)
- - Upload public key to GitHub in format "ssh-rsa <key with line breaks removed>"
+ - Upload public key to GitHub in format `ssh-rsa <key with line breaks removed>`
  - Use SSH URL from GitHub, open GitExtensions and select "Clone Repository"
  - Paste SSH URL into GitExtensions and click Clone, which will ask for our private key
 	
