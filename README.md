@@ -13,7 +13,7 @@
  - This installation includes npm; Node Package Manager. All the packages in npm are listed at http://npmjs.com/. In the root directory of the GitHub repository there's a `package.json` file which specifies a list of dependencies which we need before we can compile our typescript files
 - Navigate to the directory containing `package.json` in command prompt and run `npm install`. This looks at the package.json file and downloads any dependencies, and places them in a `node_modules` folder
 
-### 3: Compiling TypeScript (.ts) files using "gulp"
+### 3: Compile TypeScript (.ts) files using "gulp"
 
  - Now we have our dependencies, we need to use gulp to compile our .ts files. Firstly install gulp from the command line by running `npm install gulp -g`. This installs the gulp package globally (due to the `-g` flag) which means we'll be able to run it from the command line in any directory.
  - Make sure you're in the folder containing `gulpfile.js` and run `gulp` from the command line 
