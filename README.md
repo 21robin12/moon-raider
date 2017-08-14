@@ -9,7 +9,7 @@
 	
 ### 2: Install dependencies
 
- - Install NodeJS using the installer on their website (this allows us to run JavaScript directly on our local machine rather than just in a browser. Navigate to a file in command prompt and type "node <filename.js>" to try it out)
+ - Install NodeJS using the installer on their website (this allows us to run JavaScript directly on our local machine rather than just in a browser. Navigate to a file in command prompt and type `node <filename.js>` to try it out)
  - This installation includes npm; Node Package Manager. All the packages in npm are listed at http://npmjs.com/. In the root directory of the GitHub repository there's a `package.json` file which specifies a list of dependencies which we need before we can compile our typescript files
 - Navigate to the directory containing `package.json` in command prompt and run `npm install`. This looks at the package.json file and downloads any dependencies, and places them in a `node_modules` folder
 
